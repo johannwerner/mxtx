@@ -1,0 +1,13 @@
+/* 
+  Localizable.strings
+  mxtaxi
+
+  Created by Johann Werner on 24.06.17.
+  Copyright © 2017 Johann Werner. All rights reserved.
+*/
+"InteriorKey" = "Interior: %@";
+"ExteriorKey" = "Exterior: %@";
+"NameKey" = "%@";
+"EngineTypeKey" = "EngineType: %@";
+"MapViewKey" = "Map View";
+"VehiclesKey" = "Vehicles";
