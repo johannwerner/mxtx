@@ -12,7 +12,9 @@
 @implementation CarListModel
 
 - (id)initWithArray:(NSArray *)array {
+    
     self = [super init];
+    
     if (self) {
         NSMutableArray* carListMutableArray = [@[] mutableCopy];
         for (NSDictionary *dictionary in array) {
@@ -23,6 +25,7 @@
         self.carListArray = [carListMutableArray copy];
     }
     return self;
+    
 }
 
 @end

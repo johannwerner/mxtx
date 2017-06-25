@@ -10,3 +10,4 @@
 #import <UIKit/UIKit.h>
 
 #define APIBaseURL @"http://redirect.mytaxi.net"
+#define CornerRadius 4.0f

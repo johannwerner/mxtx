@@ -11,6 +11,7 @@
 @implementation UIImage (Tint)
 
 - (UIImage *)tintedImage:(UIColor *)color {
+    
     UIGraphicsBeginImageContextWithOptions(self.size, NO, [[UIScreen mainScreen] scale]);
     CGContextRef context = UIGraphicsGetCurrentContext();
     
@@ -37,6 +38,7 @@
     UIGraphicsEndImageContext();
     
     return tintedImage;
+    
 }
 
 @end

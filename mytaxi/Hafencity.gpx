@@ -14,7 +14,7 @@ creator="gpx-poi.com">
          <gpxx:WaypointExtension>
             <gpxx:Address>
                <gpxx:City>Hafencity</gpxx:City>
-               <gpxx:State>SN</gpxx:State>
+               <gpxx:State>HH</gpxx:State>
                <gpxx:Country>DE</gpxx:Country>
             </gpxx:Address>
          </gpxx:WaypointExtension>

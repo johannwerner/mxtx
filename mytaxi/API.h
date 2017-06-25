@@ -7,10 +7,12 @@
 //
 
 #import <Foundation/Foundation.h>
+
 @class CarListModel;
+
 @interface API : NSObject
 
-+ (void)fetchListWithBrochuresCompletion:(void (^)(CarListModel *response,
++ (void)fetchListWithCarsCompletion:(void (^)(CarListModel *response,
                                                    NSError *error))completion;
 
 @end

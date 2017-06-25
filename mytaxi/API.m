@@ -12,7 +12,7 @@
 
 @implementation API
 
-+ (void)fetchListWithBrochuresCompletion:(void (^)(CarListModel *response,
++ (void)fetchListWithCarsCompletion:(void (^)(CarListModel *response,
                                                    NSError *error))completion {
     NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
     NSString *endpoint = [NSString

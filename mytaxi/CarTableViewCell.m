@@ -7,6 +7,8 @@
 //
 
 #import "CarTableViewCell.h"
+#import "Constants.h"
+
 #import "UIColor+ColorManager.h"
 
 @interface CarTableViewCell ()
@@ -19,9 +21,8 @@
 
 - (void)awakeFromNib {
     [super awakeFromNib];
-    self.selectionStyle = UITableViewCellSelectionStyleNone;
     
-    self.licensePlateView.layer.cornerRadius = 4.0f;
+    self.licensePlateView.layer.cornerRadius = CornerRadius;
     
     self.exteriorLabel.textColor = [UIColor textColor];
     self.engineTypeLabel.textColor = [UIColor textColor];

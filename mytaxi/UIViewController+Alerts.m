@@ -11,7 +11,9 @@
 @implementation UIViewController (Alerts)
 
 - (void)displayAlertWithMessage:(NSString *)message {
+    
     if (NSClassFromString(@"UIAlertController")) {
+        
         UIAlertController *alertController = [UIAlertController
                                               alertControllerWithTitle:NSLocalizedString(@"app_name", nil)
                                               message:message
@@ -21,6 +23,7 @@
                                             style:UIAlertActionStyleCancel
                                           handler:nil]];
         [self presentViewController:alertController animated:YES completion:nil];
+        
     }
 }
 

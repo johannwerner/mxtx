@@ -28,10 +28,12 @@
 
 - (MKAnnotationView *)annotationView
 {
+    
     MKAnnotationView *annView = [[MKAnnotationView alloc] initWithAnnotation: self reuseIdentifier: NSStringFromClass([self class])];
     annView.canShowCallout = NO;
     annView.image = [UIImage imageNamed: self.image];
     return annView;
+    
 }
 
 @end

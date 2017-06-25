@@ -7,15 +7,18 @@
 //
 
 #import "CarListViewController.h"
+#import "MapViewController.h"
+
+#import "CarTableViewCell.h"
+
 #import "CarListViewModel.h"
 #import "CarListModel.h"
-#import "CarTableViewCell.h"
 #import "CarModel.h"
+
 #import "UIStoryboard+StoryboardManager.h"
-#import "MapViewController.h"
+#import "MapViewModel.h"
 #import "UIViewController+Alerts.h"
 #import "UIColor+ColorManager.h"
-#import "MapViewModel.h"
 
 @interface CarListViewController () <UITableViewDataSource, UITableViewDelegate>
 
@@ -65,10 +68,12 @@
     [self getData];
 }
 
+#pragma mark - Load Data
 - (void)getData {
     CarListViewController*__weak weakSelf = self;
     
     [self.activityIndicator startAnimating];
+    
     [self.carListViewModel
      fetchListCompletion:^(CarListModel *carListModel, NSError *error) {
          
@@ -87,10 +92,13 @@
 #pragma mark - CarListTableView DataSource
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    
     return self.carListViewModel.carListModel.carListArray.count;
+    
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    
     CarTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"CarTableViewCell" forIndexPath:indexPath];
     CarModel *carModel = self.carListViewModel.carListModel.carListArray[(NSUInteger) indexPath.row];
     cell.addressLabel.text = carModel.address;
@@ -99,11 +107,14 @@
     cell.engineTypeLabel.text = [NSString stringWithFormat:NSLocalizedString(@"EngineTypeKey", nil),carModel.engineType];
     cell.licensePlateLabel.text = [NSString stringWithFormat:NSLocalizedString(@"NameKey", nil),carModel.name];
     return cell;
+    
 }
 
 #pragma mark - CarListTableView Delegate
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
     MapViewController* mapViewController = [[UIStoryboard mainStoryboard] instantiateViewControllerWithIdentifier:@"MapViewController"];
     CarModel *carModel = self.carListViewModel.carListModel.carListArray[(NSUInteger) indexPath.row];
     MapViewModel *mapViewModel = [[MapViewModel alloc] initWithCarModels:@[carModel]];
@@ -111,6 +122,7 @@
     mapViewModel.navigationBarTitle = carModel.name;
     mapViewController.mapViewModel = mapViewModel;
     [self.navigationController pushViewController:mapViewController animated:YES];
+    
 }
 
 - (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -126,12 +138,14 @@
 #pragma mark - Show Map View
 
 - (void)showMapView {
+    
     MapViewController* mapViewController = [[UIStoryboard mainStoryboard] instantiateViewControllerWithIdentifier:@"MapViewController"];
     MapViewModel *mapViewModel = [[MapViewModel alloc] initWithCarModels:self.carListViewModel.carListModel.carListArray];
     mapViewModel.mapType = MapTypeShowUserLocation;
     mapViewModel.navigationBarTitle = NSLocalizedString(@"MapViewKey", nil);
     mapViewController.mapViewModel = mapViewModel;
     [self.navigationController pushViewController:mapViewController animated:YES];
+    
 }
 
 

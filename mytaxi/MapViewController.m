@@ -7,12 +7,15 @@
 //
 
 #import "MapViewController.h"
-#import <MapKit/MapKit.h>
+
 #import "MapAnnotation.h"
-#import "UIColor+ColorManager.h"
 #import "CarModel.h"
-#import "UIImage+Tint.h"
 #import "MapViewModel.h"
+
+#import "UIColor+ColorManager.h"
+#import "UIImage+Tint.h"
+
+#import <MapKit/MapKit.h>
 
 @interface MapViewController () <MKMapViewDelegate,CLLocationManagerDelegate>
 
@@ -39,16 +42,22 @@
     
     
     if ([self.locationManager respondsToSelector:@selector(requestWhenInUseAuthorization)]) {
+        
         [self.locationManager requestWhenInUseAuthorization];
+        
     }
     
     if (self.mapViewModel.mapType == MapTypeShowUserLocation) {
+        
         [self.locationManager startUpdatingLocation];
         self.mapView.showsUserLocation = YES;
+        
     }
     
     for (CarModel *carModel in self.mapViewModel.carModels) {
+        
         if (carModel.longitude && carModel.latitude) {
+            
             MapAnnotation *mapAnnotation = [[MapAnnotation alloc] initWithImage:@"pinCar"];
             
             float longitude = [carModel.longitude floatValue];
@@ -61,35 +70,25 @@
     }
     
     if (self.mapViewModel.mapType == MapTypeShowCarLocation && self.mapViewModel.carModels.count > 0) {
+        
         CarModel *carModel = self.mapViewModel.carModels.lastObject;
+        
         if (carModel.longitude && carModel.latitude) {
+            
             float longitude = [carModel.longitude floatValue];
             float latitude = [carModel.latitude floatValue];
             
             [self showLocationOnMapAtCoordinates:CLLocationCoordinate2DMake(latitude, longitude)];
         }
-    
-    }
-    
-    switch (self.mapViewModel.mapType) {
-        case MapTypeShowUserLocation: {
-            
-        }
-            break;
-            
-        case MapTypeShowCarLocation: {
-            
-        }
-            break;
-            
-        default:
-            break;
     }
     
     [self.locateMeButton setImage:[[UIImage imageNamed:@"location_icon"] tintedImage:[UIColor mainThemeColor]] forState:UIControlStateNormal];
 }
 
+#pragma mark - Show Location On Map
+
 - (void)showLocationOnMapAtCoordinates:(CLLocationCoordinate2D)coordinate {
+    
     MKCoordinateRegion mapRegion;
     mapRegion.center = coordinate;
     mapRegion.span.latitudeDelta = 0.01;
@@ -102,9 +101,11 @@
 
 - (void)locationManager:(CLLocationManager *)manager
      didUpdateLocations:(NSArray<CLLocation *> *)locations{
+    
     CLLocation *location = locations.firstObject;
     [self showLocationOnMapAtCoordinates:location.coordinate];
     [manager stopUpdatingLocation];
+    
 }
 
 #pragma mark - MKMapViewDelegate
@@ -120,8 +121,10 @@
 }
 
 - (IBAction)updateLocation:(id)sender {
+    
     self.mapView.showsUserLocation = YES;
     [self.locationManager startUpdatingLocation];
+    
 }
 
 

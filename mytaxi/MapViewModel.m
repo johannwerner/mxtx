@@ -11,7 +11,9 @@
 @implementation MapViewModel
 
 - (id)initWithCarModels:(NSArray*)carModels {
+    
     self = [super init];
+    
     if (self) {
         self.carModels = carModels;
     }
