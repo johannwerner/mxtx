@@ -63,21 +63,21 @@
 //    CGContextSetBlendMode(context, kCGBlendModeNormal);
     //Sets how sample values are composited by a graphics context.
     
-//    [[UIColor blackColor] setFill];
-//    CGContextFillRect(context, rect);
+    [[UIColor blackColor] setFill];//Not neccessary
+    CGContextFillRect(context, rect);//Not neccessary
     /*Paints the area contained within the provided rectangle, using the fill color in the current graphics state.
      The current path is cleared as a side effect of calling this function.
      */
     
     // draw original image
-//    CGContextSetBlendMode(context, kCGBlendModeNormal);
+    CGContextSetBlendMode(context, kCGBlendModeNormal);//Not neccessary
     CGContextDrawImage(context, rect, self.CGImage);
     /*Draws an image into a graphics context.
      The image is scaled—disproportionately, if necessary—to fit the bounds specified by the rect parameter.
      */
     
     // color over image with tint color
-    CGContextSetBlendMode(context, kCGBlendModeSourceAtop);// R = S*Da + D*(1 - Sa)
+    CGContextSetBlendMode(context, kCGBlendModeXOR);// R = S*Da + D*(1 - Sa)
     [color setFill];
     CGContextFillRect(context, rect);//Image will be black if removed
     
